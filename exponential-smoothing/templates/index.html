@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecasting</title>
+</head>
+<body>
+    <h1>Weather Forecasting</h1>
+    <h2>Forecast Results</h2>
+    <p>{{ ses_result }}</p>
+    <p>{{ des_result }}</p>
+    <p>{{ tes_result }}</p>
+    
+    {% if forecast_image %}
+        <img src="{{ url_for('static', filename=forecast_image) }}" alt="Forecast Chart">
+    {% endif %}
+</body>
+</html>
