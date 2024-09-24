@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Forecasting</title>
+    <title>Peramalan Suhu</title>
 </head>
 <body>
-    <h1>Weather Forecasting</h1>
-    <h2>Forecast Results</h2>
-    <p>{{ ses_result }}</p>
-    <p>{{ des_result }}</p>
-    <p>{{ tes_result }}</p>
-    
-    {% if forecast_image %}
-        <img src="{{ url_for('static', filename=forecast_image) }}" alt="Forecast Chart">
-    {% endif %}
+    <div >
+        <h1 >Peramalan Suhu Menggunakan Exponential Smoothing</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Bulan</th>
+                    <th>Suhu (°C)</th>
+                    <th>SES</th>
+                    <th>DES</th>
+                    <th>TES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(7) %}
+                <tr>
+                    <td>{{ ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul"][i] }}</td>
+                    <td>{{ suhu[i] }}</td>
+                    <td>{{ "%.2f"|format(ses[i]) }}</td>
+                    <td>{{ "%.2f"|format(des[i]) }}</td>
+                    <td>{{ "%.2f"|format(tes[i]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Grafik Peramalan</h2>
+        <img src="{{ url_for('static', filename='forecast_plot.png') }}" alt="Grafik Peramalan" class="img-fluid mt-2">
+    </div>
 </body>
 </html>
